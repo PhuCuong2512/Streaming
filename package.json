@@ -20,6 +20,7 @@
     "next-themes": "^0.3.0",
     "ngrok": "^5.0.0-beta.2",
     "prisma": "^5.15.1",
+    "query-string": "^9.0.0",
     "react": "^18",
     "react-dom": "^18",
     "svix": "^1.24.0",
