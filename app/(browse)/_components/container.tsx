@@ -21,7 +21,7 @@ export const Container = ({ children }: ContainerProps) => {
   }, [matches, onCollapse, onExpand]);
   return (
     <div
-      className={cn("flex-1", collapsed ? "ml-[70px]" : "ml-[70px]: lg:ml-60")}
+      className={cn("flex-1", collapsed ? "ml-[80px]" : "ml-[80px]: lg:ml-60")}
     >
       {children}
     </div>
