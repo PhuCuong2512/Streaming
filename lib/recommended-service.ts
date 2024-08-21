@@ -3,22 +3,44 @@ import { db } from "@/lib/db";
 
 export const getRecommended = async () => {
   // await new Promise((resolve) => setTimeout(resolve, 5000));
-  let userID;
+  let userId;
 
   try {
     const self = await getSelf();
-    userID = self.id;
+    userId = self.id;
   } catch {
-    userID = null;
+    userId = null;
   }
   let users = [];
 
-  if (userID) {
+  if (userId) {
     users = await db.user.findMany({
       where: {
-        NOT: {
-          id: userID,
-        },
+        AND: [
+          {
+            NOT: {
+              id: userId,
+            },
+          },
+          {
+            NOT: {
+              followedBy: {
+                some: {
+                  followerId: userId,
+                },
+              },
+            },
+          },
+          {
+            NOT: {
+              blocking: {
+                some: {
+                  blockedId: userId,
+                },
+              },
+            },
+          },
+        ],
       },
       orderBy: {
         createdAt: "desc",

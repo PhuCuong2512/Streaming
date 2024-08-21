@@ -1,5 +1,6 @@
 "use client";
 
+import { onBlock, onUnBlock } from "@/actions/block";
 import { onFollow, onUnfollow } from "@/actions/follow";
 import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
@@ -21,7 +22,7 @@ export const Action = ({ isFollowing, userId }: ActionProps) => {
         .catch(() => toast.error("Theo dõi thất bại"));
     });
   };
-
+  // Truy cập vào hàm onUnfollow để hủy theo dõi
   const handleUnFollow = () => {
     startTransition(() => {
       onUnfollow(userId)
@@ -29,6 +30,7 @@ export const Action = ({ isFollowing, userId }: ActionProps) => {
         .catch(() => toast.error("Theo dõi thất bại"));
     });
   };
+  //
   const onClick = () => {
     if (isFollowing) {
       handleUnFollow();
@@ -36,9 +38,23 @@ export const Action = ({ isFollowing, userId }: ActionProps) => {
       handleFollow();
     }
   };
+  //
+  const handleBlock = () => {
+    startTransition(() => {
+      onUnBlock(userId)
+        .then((data) => toast.success(`Đã chặn ${data.blocked.username}`))
+        .catch(() => toast.error("Chặn thất bại"));
+    });
+  };
+
   return (
-    <Button disabled={isPending} onClick={onClick} variant="primary">
-      {isFollowing ? "Bỏ theo dõi" : "Theo dõi"}
-    </Button>
+    <>
+      <Button disabled={isPending} onClick={onClick} variant="primary">
+        {isFollowing ? "Bỏ theo dõi" : "Theo dõi"}
+      </Button>
+      <Button onClick={handleBlock} disabled={isPending}>
+        Block{" "}
+      </Button>
+    </>
   );
 };

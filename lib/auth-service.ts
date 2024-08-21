@@ -5,13 +5,13 @@ import { db } from "@/lib/db";
 export const getSelf = async () => {
   const self = await currentUser();
   if (!self || !self.username) {
-    throw new Error("User not found");
+    throw new Error("Unauthorized");
   }
-  const users = await db.user.findUnique({
+  const user = await db.user.findUnique({
     where: { externalUserId: self.id },
   });
-  if (!users) {
+  if (!user) {
     throw new Error("Not found");
   }
-  return users;
+  return user;
 };
