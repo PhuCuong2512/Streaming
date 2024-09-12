@@ -6,6 +6,7 @@ import { currentUser } from "@clerk/nextjs/server";
 
 export const Actions = async () => {
   const user = await currentUser();
+  
   return (
     <div className="flex items-center justify-end gap-x-2 ml-4 lg:ml-0">
       {!user && (
@@ -25,10 +26,14 @@ export const Actions = async () => {
           >
             <Link href={`/u/${user.username}`}>
               <Clapperboard className="h-5 w-5 lg:mr-2" />
-              <span className="hidden lg:block">DashBoard</span>
+              <span className="hidden lg:block">
+                DashBoard
+                </span>
             </Link>
           </Button>
-          <UserButton afterSignOutUrl="/" />
+          <UserButton
+           afterSignOutUrl="/" 
+           />
         </div>
       )}
     </div>
