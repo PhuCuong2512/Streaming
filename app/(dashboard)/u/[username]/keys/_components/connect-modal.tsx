@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 
-const RTMP = String(IngressInput.RTMP_INPUT);
+const RTMP = String(IngressInput .RTMP_INPUT);
 const WHIP = String(IngressInput.WHIP_INPUT);
 
 type IngressType = typeof RTMP | typeof WHIP;
@@ -41,7 +41,7 @@ export const ConnectModal = () => {
     const onSubmit = async () => {
         startTransition(() => {
             createIngress(parseInt(ingressType))
-                .then((error) => {
+                .then(() => {
                     toast.success("Ingress created");
                     closeRef?.current?.click();
                     // console.error("Error creating ingress:", error);

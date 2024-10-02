@@ -13,6 +13,7 @@ interface CreatorLayoutProps {
 };
 
 const CreatorLayout = async ({params, children}: CreatorLayoutProps) => {
+
     const self = await getSelfByUsername(params.username);
 
     if (!self) {
