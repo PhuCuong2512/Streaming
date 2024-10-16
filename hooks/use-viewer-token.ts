@@ -30,7 +30,7 @@ export const useViewerToken = (hostIdentity: string) => {
             } catch {
                 toast.error ("Something went wrong")
             }
-        }
+        } 
         createToken();
     }, [hostIdentity]);
 
