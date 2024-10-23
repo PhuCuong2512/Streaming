@@ -31,4 +31,4 @@ export const ChatMessage = ({
             </div>
         </div>
     );
-};
+}; 

@@ -36,7 +36,7 @@ export const ChatForm = ({
         e.preventDefault();
         e.stopPropagation();
 
-        if (!value || !isDisabled) return;
+        if (!value || isDisabled) return;
 
         if(isDelayed && !isDelayBlocked) {
             setIsDelayBlocked(true);
