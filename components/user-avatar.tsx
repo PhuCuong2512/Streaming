@@ -6,14 +6,17 @@ import { LiveBadge } from "@/components/live-badge";
 
 const avatarSizes = cva("", {
   variants: {
-    size: { default: "h-8 w-8", lg: "h-14 w-14" },
+    size: { 
+      default: "h-8 w-8",
+      lg: "h-14 w-14" 
+    },
   },
   defaultVariants: { size: "default" },
 });
 
 interface UserAvatarProps extends VariantProps<typeof avatarSizes> {
-  imageUrl: string;
   username: string;
+  imageUrl: string;
   isLive?: boolean;
   showBadge?: boolean;
 }
